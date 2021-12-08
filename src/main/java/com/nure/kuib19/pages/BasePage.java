@@ -19,6 +19,9 @@ public class BasePage {
     @AndroidFindBy(xpath = "//android.widget.Button[2]")
     private static MobileElement attentionAcceptButton;
 
+    @AndroidFindBy(id = "toolbarBackText")
+    private static MobileElement backButton;
+
     public BasePage() {
         PageFactory.initElements(new AppiumFieldDecorator(DriverManager.getDriver()), this);
     }
@@ -33,9 +36,12 @@ public class BasePage {
         return true;
     }
 
-    public BasePage clickAttentionButton() {
+    public void clickAttentionButton() {
         clickButton(attentionAcceptButton);
-        return this;
+    }
+
+    public void clickBackButton() {
+        clickButton(backButton);
     }
 
     public static void clickButton(MobileElement element) {
@@ -47,7 +53,7 @@ public class BasePage {
         }
     }
 
-    public static boolean checkButton(MobileElement element){
+    public static boolean checkButton(MobileElement element) {
         return waitElement(element, TIME_TO_WAIT);
     }
 }
