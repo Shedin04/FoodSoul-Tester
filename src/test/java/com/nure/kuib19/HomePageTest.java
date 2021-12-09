@@ -14,7 +14,7 @@ public class HomePageTest extends BaseTest {
         softAssert.assertAll();
     }
 
-    @Test(description = "Check types of delivery")
+    @Test(description = "Check all types of delivery")
     public void checkTypesOfDelivery() {
         String firstNameOfDelivery = "Delivery";
         String secondNameOfDelivery = "Pickup";
