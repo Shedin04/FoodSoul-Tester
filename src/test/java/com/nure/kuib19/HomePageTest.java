@@ -39,16 +39,37 @@ public class HomePageTest extends BaseTest {
         selectProduct();
         addCountOfProduct();
         CartPage cartPage = addToCart();
-        softAssert.assertTrue(isPriceDisplayed());
+        softAssert.assertTrue(isPriceDisplayed(), "Price isn't displayed");
         softAssert.assertEquals(PRODUCT_TOTAL_PRICE, getTotalPrice(), "Incorrect price");
-        softAssert.assertTrue(isConfirmOrderButtonDisplayed());
+        softAssert.assertTrue(isConfirmOrderButtonDisplayed(), "There is no confirm button");
         DeliveryPage deliveryPage = clickConfirmOrderButton();
-        softAssert.assertTrue(isInputFormsDisplayed());
+        softAssert.assertTrue(isInputFormsDisplayed(), "Input form isn't displayed");
         inputName(NAME);
         inputNumber(NUMBER);
         selectOdds(ODDS);
-        softAssert.assertTrue(isSendOrderButtonDisplayed());
+        softAssert.assertTrue(isSendOrderButtonDisplayed(), "There is no send order button");
         clickSendOrderButton();
+        softAssert.assertAll();
+    }
+
+
+    @Test(description = "User can remove products from basket")
+    public void checkRemoveProduct() {
+        HomePage homePage = new HomePage();
+        selectMenuCategory(MENU_CATEGORY_2);
+        selectProduct();
+        addCountOfProduct();
+        CartPage cartPage = addToCart();
+        softAssert.assertTrue(isPriceDisplayed(), "Price isn't displayed");
+        softAssert.assertEquals(PRODUCT_TOTAL_PRICE_2, getTotalPrice(), "Incorrect price");
+        clickMenuButton();
+        softAssert.assertTrue(isMenuButtonDisplayed(), "There is no menu button");
+        selectMenuButton(MENU);
+        clickMenuButton();
+        selectMenuButton(CART);
+        softAssert.assertTrue(isDeleteFromCartButtonDisplayed(), "There is no delete from cart button");
+        clickDeleteFromCartButton();
+        softAssert.assertTrue(isCartEmpty(), "Cart isn't empty");
         softAssert.assertAll();
     }
 }

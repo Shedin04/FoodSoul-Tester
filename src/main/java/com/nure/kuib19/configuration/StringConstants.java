@@ -24,6 +24,7 @@ public class StringConstants {
      */
 
     public static final String PRODUCT_TOTAL_PRICE = "278 ₴";
+    public static final String PRODUCT_TOTAL_PRICE_2 = "270 ₴";
     public static final String NAME = "Ivan";
     public static final String NUMBER = "999999999";
     public static final String ADDRESS = "фрунзе";
@@ -34,6 +35,8 @@ public class StringConstants {
      */
 
     public static final String MENU = "MENU";
+    public static final String CART = "CART";
+
 
     /**
      * Function button names

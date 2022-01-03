@@ -32,7 +32,7 @@ public class BasePage {
     @AndroidFindBy(id = "toolbarBurgerIcon")
     private static MobileElement moreMenuButton;
 
-    @AndroidFindBy(xpath = "//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.ImageView")
+    @AndroidFindBy(xpath = "title")
     private static List<MobileElement> topMenuButtons;
 
     public BasePage() {
@@ -110,6 +110,14 @@ public class BasePage {
     public static boolean isTopMenuButtonsDisplayed() {
         return waitElements("//android.widget.FrameLayout/android.widget.LinearLayout/android.widget.ImageView",
                 TIME_TO_WAIT);
+    }
+
+    public static void selectMenuButton(String menuTittle) {
+        try {
+            topMenuButtons.stream().filter(t -> t.getText().contains(menuTittle)).findAny().orElseThrow().click();
+        } catch (Exception e) {
+            logger.warn(format("There is no '%s' in menu", menuTittle));
+        }
     }
 
     public static boolean waitElement(String locator, int timeToWait) {

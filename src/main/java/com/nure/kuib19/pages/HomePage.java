@@ -42,10 +42,6 @@ public class HomePage extends BasePage {
                 TIME_TO_WAIT);
     }
 
-    public static void clickDeliveryPageButton() {
-        deliveryPageButton.click();
-    }
-
     public static boolean isPickupPageButtonDisplayed() {
         return waitElement("//android.widget.LinearLayout/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.TextView[2]",
                 TIME_TO_WAIT);
