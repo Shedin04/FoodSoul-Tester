@@ -19,6 +19,8 @@ public class CapabilitiesConfigurator {
         capabilities.setCapability(APP_PACKAGE, ConfigurationReader.get().appPackage());
         capabilities.setCapability(APP_ACTIVITY, ConfigurationReader.get().appActivity());
         capabilities.setCapability(APP, new File(ConfigurationReader.get().appPath()).getAbsolutePath());
+        capabilities.setCapability("unicodeKeyboard", "false");
+        capabilities.setCapability("resetKeyboard", "false");
         return capabilities;
     }
 }

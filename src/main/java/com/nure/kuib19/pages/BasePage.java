@@ -24,7 +24,7 @@ public class BasePage {
     protected static final Logger logger = LogManager.getRootLogger();
     protected static final int TIME_TO_WAIT = 10;
     protected static final int TIME_ATTENTION_BUTTON = 3;
-    private static final Actions actions = new Actions(DriverManager.getDriver());
+    protected static final Actions actions = new Actions(DriverManager.getDriver());
 
     @AndroidFindBy(id = "toolbarTitle")
     private static MobileElement pageTitle;
@@ -122,9 +122,27 @@ public class BasePage {
         }
     }
 
+    public static boolean waitElement(MobileElement element, int timeToWait) {
+        try {
+            new WebDriverWait(DriverManager.getDriver(), timeToWait)
+                    .until(ExpectedConditions.visibilityOf(element));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public static boolean waitElements(String locator, int timeToWait) {
         return !new WebDriverWait(DriverManager.getDriver(), timeToWait)
                 .until(ExpectedConditions.numberOfElementsToBeMoreThan(By
                         .xpath(locator), 0)).isEmpty();
+    }
+
+    public static boolean waitElements(List<MobileElement> elements, int timeToWait) {
+        try {
+            new WebDriverWait(DriverManager.getDriver(), timeToWait).until(ExpectedConditions.visibilityOf(pageTitle));
+        } catch (Exception ignored) {
+        }
+        return !elements.isEmpty();
     }
 }
